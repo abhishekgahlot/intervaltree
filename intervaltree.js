@@ -143,10 +143,14 @@ function query(v, q_start, q_end, results) {
     } else if (q_start > v.getXMid()) {
         intervalSet = v.getRightSet();
     }
-    for (var i=0; i < intervalSet.length; i++) {
-        var it = intervalSet[i];
-        if (it.start <= q_end && it.end >= q_start) {
-            results.push(it);
+    
+    if(typeof intervalSet !== 'undefined'){
+        
+        for (var i=0; i < intervalSet.length; i++) {
+            var it = intervalSet[i];
+            if (it.start <= q_end && it.end >= q_start) {
+                results.push(it);
+            }
         }
     }
     query(v.getLeftChild(), q_start, q_end, results);
